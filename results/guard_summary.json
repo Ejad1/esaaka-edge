@@ -1,0 +1,22 @@
+{
+ "perturbed_test_mean": {
+  "gate_reject_rate": 0.8094059405940595,
+  "model_conf_wrong_rate": 0.16386138613861387,
+  "system_conf_wrong_rate": 0.013861386138613863,
+  "system_answer_rate": 0.17425742574257427
+ },
+ "external_pooled": {
+  "n": 2039,
+  "gate_reject_rate": 1.0,
+  "model_conf_wrong_rate": 0.3820500245218244,
+  "system_conf_wrong_rate": 0.0
+ },
+ "clean_test": {
+  "gate_reject_rate": 0.0891089108910891,
+  "model_high_accuracy": 0.9578947368421052,
+  "system_answer_rate": 0.8514851485148515,
+  "system_answer_accuracy": 0.9709302325581395,
+  "model_conf_wrong_rate": 0.039603960396039604,
+  "system_conf_wrong_rate": 0.024752475247524754
+ }
+}

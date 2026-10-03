@@ -33,7 +33,42 @@
   "margin": 0.2,
   "note": "fixed on clean BRACOL validation only (docs/EXPERIMENTS.md section 5); never tuned on test or field data"
  },
- "guard": null,
+ "guard": {
+  "bounds": {
+   "sharp": [
+    59.56386383856193,
+    null
+   ],
+   "mean": [
+    128.79120064366657,
+    198.51316587616358
+   ],
+   "contrast": [
+    43.32439516811602,
+    null
+   ],
+   "dark": [
+    null,
+    0.01
+   ],
+   "bright": [
+    null,
+    0.3150111607142857
+   ],
+   "border": [
+    null,
+    2.912852458781253
+   ],
+   "leaf": [
+    0.19944794323979592,
+    0.5071448501275511
+   ]
+  },
+  "learned_on": "clean BRACOL validation (seed 42)",
+  "quantile": 0.005,
+  "val_pass_rate": 0.9601990049751243,
+  "note": "Scale-dependent: tuned on BRACOL captures; recalibrate with field photos before real deployment."
+ },
  "provenance": {
   "train_data": "BRACOL leaf images (CC BY 4.0), recovered subset, Brazil, plain background",
   "test_clean": {

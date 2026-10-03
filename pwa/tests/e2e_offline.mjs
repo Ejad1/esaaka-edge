@@ -55,6 +55,10 @@ await page.screenshot({ path: path.join(RES, 'plots/e2e_3_history.png'), fullPag
 const stored = await page.evaluate(async () => (await window.indexedDB.databases()).map((d) => d.name));
 out.steps.indexeddb = stored;
 
+if (process.env.E2E_FAST) {   // quick smoke test: UI flow only
+  console.log('FAST ui:', JSON.stringify(out.steps.ui.map((u) => [u.truth, u.tier, u.text.slice(0, 90)])), '| history', out.steps.history_count, '| offline', JSON.stringify(out.steps.offline_loaded), '| failed requests', failed.length);
+  await ctx.close(); process.exit(0);
+}
 // 3) all held-out test images through the exact shipped pipeline, offline
 await ctx.route('**/__t/*', (route) => {
   const id = route.request().url().split('/__t/')[1].replace('.jpg', '');

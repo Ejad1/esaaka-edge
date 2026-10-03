@@ -1,0 +1,103 @@
+{
+  "mms300m_waxal_ewe": {
+    "repo": "waxal-benchmarking/mms-300m-waxal-ewe",
+    "params": 315509445,
+    "fp32_MB": 1262.03778,
+    "rss_after_load_MB": 1319.15776,
+    "license": "cc-by-nc-4.0",
+    "self_reported": "WER 31.3 / CER 9.6 on WAXAL test (model card, unverified)",
+    "fp32": {
+      "wer": 0.31572769953051644,
+      "cer": 0.0989146521953626,
+      "rtf_cpu6": 0.4680037244536931,
+      "median_latency_s": 9.270385265350342,
+      "audio_s": 481.7375625,
+      "peak_rss_MB": 2094.219264,
+      "examples": [
+        {
+          "ref": "yevi le ekplɔ̃nu eye akaɖiwo le kple atsiwo le woƒe megbe wole nɔnɔme me abe dzidzɔ kpɔm wole ene nyɔnu eve le wo dome lé evi ɖaa si",
+          "hyp": "yevuwo le ekplɔ nu eye akaɖiwo le kple atiwo le woƒe megbe wole nɔnɔme mem abe dzidzɔ kpɔm wole ene nyɔnu eve le wo dome lé evi ɖe asi"
+        },
+        {
+          "ref": "nyadzɔdzɔgblɔla aɖe le du aɖe me le nyadzɔdzɔawo gblɔ ye amea ɖewo tsi atsitre ɖe afi ma le edu la flagawo ɖe asi ye amea ɖewo ɖo kuku amea ɖewo le e em amea ɖewo ɖo kuku amea ɖewo le nanewo ɖe asi keŋ kple nyadzɔdzɔgbalewo ɖe asi keŋ",
+          "hyp": "nyadzɔdzɔgblɔla ɖewo le du ɖe me le nyadzɔdzɔwo gblɔm ye ame ɖewo tsiatsitre ɖe afi ma lé edu la ƒe flagawo ɖe asi ye amea ɖewo ɖo kuku amea ɖewo lé amea ɖewo ɖo kuku amea ɖewo lé nanewo ɖe asi ke kple nyadzɔdzɔgbalẽwo ɖe asi keŋ"
+        },
+        {
+          "ref": "ŋutsu aɖe tsɔ ɖe ta eye wòtsɔ agbawo de eme ele taya hã kum eye ame aɖewo hã le asime le dzomi kple anagote dzram",
+          "hyp": "vidza aɖe tsɔ ƒusi ɖe eta eye wòtsɔ agbawo de me ele taya hã kum eye ame aɖewo hã le asime le dzomi kple anagote dzram"
+        }
+      ]
+    },
+    "dynamic_int8": {
+      "wer": 0.3215962441314554,
+      "cer": 0.10014800197335964,
+      "rtf_cpu6": 0.33487731032351714,
+      "median_latency_s": 6.728021025657654,
+      "audio_s": 481.7375625,
+      "peak_rss_MB": 3748.302848,
+      "examples": [
+        {
+          "ref": "yevi le ekplɔ̃nu eye akaɖiwo le kple atsiwo le woƒe megbe wole nɔnɔme me abe dzidzɔ kpɔm wole ene nyɔnu eve le wo dome lé evi ɖaa si",
+          "hyp": "yevuwo le ekplɔ nu eye akaɖiwo le kple atiwo le woƒe megbe wole nɔnɔme mem abe dzidzɔ kpɔm wole ene nyɔnu eve le wo dome lé evi ɖe asi"
+        },
+        {
+          "ref": "nyadzɔdzɔgblɔla aɖe le du aɖe me le nyadzɔdzɔawo gblɔ ye amea ɖewo tsi atsitre ɖe afi ma le edu la flagawo ɖe asi ye amea ɖewo ɖo kuku amea ɖewo le e em amea ɖewo ɖo kuku amea ɖewo le nanewo ɖe asi keŋ kple nyadzɔdzɔgbalewo ɖe asi keŋ",
+          "hyp": "nyadzɔdzɔgblɔla ɖewo le du ɖe me le nyadzɔdzɔwo gblɔm ye ame aɖewo tsiatsitre ɖe afi ma lé edu la ƒe flagawo ɖe asi ye amea ɖewo ɖo kuku amea ɖewo lé amea ɖewo ɖo kuku amea ɖewo lé nanewo ɖe asi ke kple nyadzɔdzɔgbalẽwo ɖe asi keŋ"
+        },
+        {
+          "ref": "ŋutsu aɖe tsɔ ɖe ta eye wòtsɔ agbawo de eme ele taya hã kum eye ame aɖewo hã le asime le dzomi kple anagote dzram",
+          "hyp": "vidza aɖe tsɔ kusi ɖe ta eye wòtsɔ agbawo de eme ele taya hã kum eye ame aɖewo hã le asime le dzomi kple anagote dzrɔm"
+        }
+      ],
+      "state_dict_MB": 354.569703
+    },
+    "onnx_export": {
+      "ok": false,
+      "error": "No module named 'onnxscript'"
+    }
+  },
+  "mms_tts_ewe": {
+    "repo": "facebook/mms-tts-ewe",
+    "params": 36287088,
+    "fp32_MB": 145.148352,
+    "license": "cc-by-nc-4.0",
+    "samples": [
+      {
+        "id": "ewe_54811",
+        "text": "yevi le ekplɔ̃nu eye akaɖiwo le kple atsiwo le woƒe megbe wole nɔnɔme me abe dzidzɔ kpɔm wole ene nyɔnu eve le wo dome lé evi ɖaa si",
+        "audio_s": 12.768,
+        "synthesis_s": 7.211573600769043,
+        "rtf": 0.5648162281304074
+      },
+      {
+        "id": "ewe_179811",
+        "text": "nyadzɔdzɔgblɔla aɖe le du aɖe me le nyadzɔdzɔawo gblɔ ye amea ɖewo tsi atsitre ɖe afi ma le edu la flagawo ɖe asi ye amea ɖewo ɖo kuku amea ɖewo le e em amea ɖe",
+        "audio_s": 14.576,
+        "synthesis_s": 7.852590799331665,
+        "rtf": 0.5387342754755533
+      },
+      {
+        "id": "ewe_102256",
+        "text": "ŋutsu aɖe tsɔ ɖe ta eye wòtsɔ agbawo de eme ele taya hã kum eye ame aɖewo hã le asime le dzomi kple anagote dzram",
+        "audio_s": 10.432,
+        "synthesis_s": 5.59204626083374,
+        "rtf": 0.5360473792977128
+      },
+      {
+        "id": "ewe_102289",
+        "text": "dɔnɔdzikpɔla eɖe bɔbɔ nɔ anyi ɖe kplɔ ŋu le kɔdzi ke dɔnɔa aɖe bɔbɔ nɔ zikpui dzi le eŋgɔ le eƒe ŋkume kpɔm dɔnɔdzikpɔla le agbalẽa ɖe dzi kpɔm ke nyɔnu bubu aɖ",
+        "audio_s": 14.208,
+        "synthesis_s": 7.658241510391235,
+        "rtf": 0.5390091153146984
+      },
+      {
+        "id": "ewe_143925",
+        "text": "ewoɖula aɖe wole ati gã ɖe te wole eŋu ƒom eye ɖetugbuivi aɖe le wɔ ɖum edzo yi dzime le ewoɖuɖu teƒe sia eye amewo ele teƒe siawo gbogbo aɖe",
+        "audio_s": 13.216,
+        "synthesis_s": 7.551661729812622,
+        "rtf": 0.5714029759240786
+      }
+    ],
+    "note": "Texts are human WAXAL transcriptions (lower-cased, punctuation stripped). Quality NOT scored automatically: a native Ewe speaker must judge the wav files."
+  }
+}

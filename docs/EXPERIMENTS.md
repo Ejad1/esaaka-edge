@@ -99,6 +99,19 @@ original plan, and is reported as such.
 * Additional diagnostic (EXPLORATORY): `bg_uniform` = leaf pasted on a neutral grey background, to separate
   "clutter sensitivity" from "background shortcut learning".
 
+### Phase 2 decision criterion (frozen before any Phase 2 *perturbed* result was inspected)
+
+Only clean-test accuracy/macro-F1 of the Phase 2 runs had been seen when this was written.
+
+* **Recipe**: adopt robust augmentation for an architecture iff, on the **seed-42 validation** images, the mean
+  macro-F1 over the 10 fixed perturbations improves by **>= 0.10 absolute** AND clean validation macro-F1 drops by
+  **<= 0.03**. (Phase 1 validation-perturbed logits are computed from the shipped FP32 ONNX files.)
+* **Architecture**: if the robust recipe is adopted, re-apply the section 6 weighted rule to the Phase 2 models
+  (seed-averaged test metrics, same latency/size terms).
+* **Gate**: thresholds are the 0.5th/99.5th percentile (widened until >= 95% of clean validation images pass) of each
+  metric on clean validation images; the gate is judged on perturbed test images by rejection rate, and by
+  system-level selective accuracy (gate AND confidence tier).
+
 ## 7. Results
 
 _(appended by the experiment scripts and then summarised here)_

@@ -74,7 +74,7 @@ async function analyse(file) {
     const photo = await previewCanvas.convertToBlob({ type: 'image/jpeg', quality: 0.85 });
     if (reasons.length) {
       const id = await addObservation({ photo, tier: 'guard', reasons, metrics, lang, model: state.config.model_version });
-      state.last = { photo, reasons, id, kind: 'guard' };
+      state.last = { photo, reasons, id, kind: 'guard', metrics };
     } else {
       const res = await classify(imageData);
       const id = await addObservation({ photo, tier: res.tier, top1: res.top1, p1: res.p1, top2: res.top2, p2: res.p2, probs: res.probs, ms: res.ms, metrics, lang, model: state.config.model_version });
@@ -93,6 +93,11 @@ function resultScreen() {
       el('ul', {}, L.reasons.map((r) => el('li', {}, t('guard_' + r))))));
     main.append(el('button', { className: 'btn', textContent: t('retake'), onclick: () => { state.screen = 'home'; render(); } }));
     main.append(el('div', { className: 'muted' }, '✔ ' + t('saved_on_device') + ' — ' + t('obs_no_diag')));
+    if (new URLSearchParams(location.search).has('debug')) {   // developer view: measured value vs learned bounds
+      const b = state.config.guard.bounds, m = L.metrics;
+      main.append(el('pre', { className: 'panel muted', style: 'white-space:pre-wrap;font-size:12px', id: 'debug' },
+        Object.keys(b).map((k) => `${k.padEnd(9)} ${m[k].toFixed(3).padStart(9)}   bounds [${b[k][0] == null ? '-' : b[k][0].toFixed(3)}, ${b[k][1] == null ? '-' : b[k][1].toFixed(3)}]`).join(String.fromCharCode(10))));
+    }
     return main;
   }
   const r = L.res, name = clsName(r.top1), pct = Math.round(r.p1 * 100), adv = state.advice[lang === 'en' ? 'en' : 'fr'];
