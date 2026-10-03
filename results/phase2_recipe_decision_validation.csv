@@ -1,0 +1,5 @@
+arch,val_clean_f1_phase1,val_clean_f1_phase2,val_pert_f1_phase1,val_pert_f1_phase2,delta_pert,delta_clean,adopt_robust
+mobilenetv3_small_100,0.9166,0.9301,0.6993,0.8605,0.1613,0.0135,True
+mobilenetv3_large_100,0.9118,0.907,0.7036,0.8702,0.1666,-0.0048,True
+efficientnet_b0,0.9169,0.9116,0.6549,0.8344,0.1795,-0.0053,True
+efficientnet_lite0,0.9132,0.9182,0.6356,0.8514,0.2158,0.005,True

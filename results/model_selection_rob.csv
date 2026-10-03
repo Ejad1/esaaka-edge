@@ -1,0 +1,5 @@
+arch,phase,macro_f1,robust_f1,combined_f1,bg_clutter_f1,bg_uniform_f1,conf_wrong,sel80,score,rank
+mobilenetv3_small_100,2,0.9015,0.8581,0.8028,0.88,0.8991,0.0635,0.9794,0.6587,2
+mobilenetv3_large_100,2,0.9123,0.8764,0.783,0.9027,0.8988,0.0439,0.9877,0.7629,1
+efficientnet_b0,2,0.8911,0.8433,0.7661,0.8919,0.878,0.0515,0.9691,0.0111,4
+efficientnet_lite0,2,0.915,0.8438,0.757,0.908,0.8771,0.0515,0.9815,0.5702,3

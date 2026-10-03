@@ -1,10 +1,10 @@
 {
- "display_name": "MobileNetV3-Small",
- "arch": "mobilenetv3_small_100",
+ "display_name": "MobileNetV3-Large",
+ "arch": "mobilenetv3_large_100",
  "model_file": "model.onnx",
- "model_mb": 6.1,
- "model_sha256": "a29c2d7a93a952bb6e71e8547b9737ac4eff853ac4757d0e40ef934c15ad6fc3",
- "model_version": "mobilenetv3_small_100_s42",
+ "model_mb": 16.8,
+ "model_sha256": "e4be9062c0bfddf7c4813b36ab760bcfa40db397f13750516fd5f74a4a227c7c",
+ "model_version": "mobilenetv3_large_100_s42_rob",
  "labels": [
   "healthy",
   "miner",
@@ -26,10 +26,10 @@
    0.225
   ]
  },
- "temperature": 2.185330525773308,
+ "temperature": 2.1964898212319457,
  "thresholds": {
-  "high": 0.6151999831199646,
-  "medium": 0.4097999930381775,
+  "high": 0.6241999864578247,
+  "medium": 0.3361000120639801,
   "margin": 0.2,
   "note": "fixed on clean BRACOL validation only (docs/EXPERIMENTS.md section 5); never tuned on test or field data"
  },
@@ -72,8 +72,8 @@
  "provenance": {
   "train_data": "BRACOL leaf images (CC BY 4.0), recovered subset, Brazil, plain background",
   "test_clean": {
-   "accuracy": 0.9257425742574258,
-   "macro_f1": 0.9039308060360692
+   "accuracy": 0.9207920792079208,
+   "macro_f1": 0.900412040072369
   }
  }
 }

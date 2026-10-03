@@ -21,6 +21,7 @@ LAB = ["healthy", "miner", "rust", "phoma", "cercospora"]
 MEAN = np.array([0.485, 0.456, 0.406], np.float32); STD = np.array([0.229, 0.224, 0.225], np.float32)
 MARGIN = 0.20
 suffix = sys.argv[1] if len(sys.argv) > 1 else "_s42"
+if os.environ.get("ONLY_ARCH"): ARCHS = [a for a in ARCHS if a == os.environ["ONLY_ARCH"]]
 CAP_PER_CLASS = 600
 
 
