@@ -52,7 +52,7 @@ fr = {
  "model_info": "Modèle : {name}, {size} Mo, analyse locale",
  "ee_banner": "Traductions éwé en cours de validation : texte affiché en français.",
  "cls_healthy": "feuille saine", "cls_miner": "mineuse des feuilles", "cls_rust": "rouille orangée",
- "cls_phoma": "taches de Phoma", "cls_cercospora": "tache brune (Cercospora)",
+ "cls_phoma": "taches de Phoma", "cls_cercospora": "tache brune (Cercospora)", "cls_other": "autre problème ou plusieurs problèmes",
 }
 en = {
  "app_name": "Esaaka Edge",
@@ -101,7 +101,7 @@ en = {
  "model_info": "Model: {name}, {size} MB, runs locally",
  "ee_banner": "Ewe translations are being validated: text shown in French.",
  "cls_healthy": "healthy leaf", "cls_miner": "leaf miner", "cls_rust": "coffee leaf rust",
- "cls_phoma": "Phoma leaf spot", "cls_cercospora": "brown eye spot (Cercospora)",
+ "cls_phoma": "Phoma leaf spot", "cls_cercospora": "brown eye spot (Cercospora)", "cls_other": "another problem, or several problems",
 }
 assert set(fr) == set(en), set(fr) ^ set(en)
 ee = {k: "" for k in fr}

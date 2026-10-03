@@ -195,3 +195,23 @@ Eval set: WAXAL Ewe ASR test shard 1 (human transcriptions, spontaneous image-pr
 
 **Decision: Ewe voice input is not embedded.** Text Ewe stays in P0 (translations to be supplied by a native speaker). A feasible route is *pre-generated* audio of the fixed answers from validated Ewe text. ONNX export of the 300M model was not tested (missing `onnxscript` in the environment), so ONNX feasibility is inconclusive, not negative. Umbaji's `Umbaji/Yodi` (Ewe+English ASR, Keras `.h5`) is gated (manual approval) and CC-BY-NC-3.0, so it could not be benchmarked.
 
+
+### 7.6 Field adaptation (prepared, NOT trained in time)
+
+Because the model fails on real field photos (7.4), we prepared a field-adapted v2: BRACOL + Uganda + RoCoLe for **training**, with a 6th class `other`
+(BRACOL multi-stress leaves + RoCoLe red spider mite) so the model can learn to say "no diagnosis". Leak control: Uganda has augmented copies, so its
+3,220 usable images were clustered with a flip/rotation-invariant perceptual hash into 1,740 groups and whole groups were assigned to one split; RoCoLe was
+split by plant (`C#P#`). Resulting split: train 3,487 / validation 746 / test 746 images (RoCoLe limited to 358 photos because of download speed).
+Because these sources are then used for training, **they stop being independent external data**, and test numbers from the same farms would be optimistic.
+
+Status: data preparation (`experiments/datasets/prepare_field_v2.py`), the training/analysis scripts (`train_modal.py --field`, `analyze_v2.py`) and a re-learned gate exist, but the
+GPU run was **not executed**: uploading the dataset to the cloud volume did not finish in the time available (very slow connection). The shipped model is therefore still the one in 7.2.
+
+Gate re-learned for a field model (`experiments/robustness/guard_v2.py`, bounds on v2 validation, phone-resolution sources only): 96.6% of BRACOL+RoCoLe validation images pass.
+On held-out test the gate rejects 2.8% of BRACOL, 27.8% of RoCoLe photos and 93% of Uganda photos; the Uganda rejection is mostly a **resolution artefact** (256 px images upscaled),
+which is why those images were excluded from setting the bounds. A first version of the rule let Uganda drive the bounds and produced a 41% pass rate; that was a flaw in the rule and was corrected before any model result existed.
+
+### 7.7 First manual test of the deployed app (2026-10-03)
+Maize/sorghum field photos were refused by the gate (too dark, busy and colourful background), as designed. A coffee leaf on a plain sheet was classified with a displayed
+confidence of "100 %", which is misleading for a model with known over-confidence under shift; the display is now capped at 99%. It also confirms the main limitation: only
+a detached leaf on a plain surface is handled.

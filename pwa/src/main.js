@@ -7,7 +7,7 @@ import { addObservation, listObservations, markShared, removeObservation, pendin
 
 const app = document.getElementById('app');
 const state = { screen: 'home', config: null, advice: null, last: null, ready: false, error: null };
-const CLASSES = ['healthy', 'miner', 'rust', 'phoma', 'cercospora'];
+const CLASSES = ['healthy', 'miner', 'rust', 'phoma', 'cercospora', 'other'];
 
 const el = (tag, props = {}, ...kids) => {
   const n = Object.assign(document.createElement(tag), props);
@@ -100,7 +100,7 @@ function resultScreen() {
     }
     return main;
   }
-  const r = L.res, name = clsName(r.top1), pct = Math.round(r.p1 * 100), adv = state.advice[lang === 'en' ? 'en' : 'fr'];
+  const r = L.res, name = clsName(r.top1), pct = Math.min(99, Math.round(r.p1 * 100)), adv = state.advice[lang === 'en' ? 'en' : 'fr'];
   if (r.tier === 'low') {
     main.append(el('div', { className: 'tier low', id: 'tier-low' }, el('h2', {}, t('result_low')), el('div', {}, t('result_low_body'))));
   } else {
@@ -124,7 +124,7 @@ function resultScreen() {
 function labelOf(o) {
   if (o.tier === 'guard') return t('obs_no_diag');
   if (o.tier === 'low') return t('result_low');
-  return (o.tier === 'high' ? t('result_high') : t('result_medium')) + ': ' + clsName(o.top1) + ' (' + Math.round(o.p1 * 100) + ' %)';
+  return (o.tier === 'high' ? t('result_high') : t('result_medium')) + ': ' + clsName(o.top1) + ' (' + Math.min(99, Math.round(o.p1 * 100)) + ' %)';
 }
 
 async function shareObs(id) {

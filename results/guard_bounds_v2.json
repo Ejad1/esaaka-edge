@@ -1,0 +1,36 @@
+{
+ "bounds": {
+  "sharp": [
+   57.279788852120824,
+   null
+  ],
+  "mean": [
+   87.66587555605088,
+   199.03638214206467
+  ],
+  "contrast": [
+   32.30975184830797,
+   null
+  ],
+  "dark": [
+   null,
+   0.039445950255102176
+  ],
+  "bright": [
+   null,
+   0.31736567283163275
+  ],
+  "border": [
+   null,
+   31.761225326071607
+  ],
+  "leaf": [
+   0.19613201530612245,
+   0.9916792889030612
+  ]
+ },
+ "learned_on": "v2 validation, phone-resolution sources only (BRACOL + RoCoLe)",
+ "quantile": 0.0033333333333333335,
+ "val_pass_rate": 0.9660377358490566,
+ "note": "Scale-dependent; recalibrate with photos from the target phones before real deployment."
+}

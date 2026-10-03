@@ -62,3 +62,4 @@ Do NOT use machine translation without a native-speaker check.
 | `cls_rust` | rouille orangée | coffee leaf rust |
 | `cls_phoma` | taches de Phoma | Phoma leaf spot |
 | `cls_cercospora` | tache brune (Cercospora) | brown eye spot (Cercospora) |
+| `cls_other` | autre problème ou plusieurs problèmes | another problem, or several problems |

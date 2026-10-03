@@ -28,6 +28,7 @@ export async function classify(imageData) {
   const order = probs.map((p, i) => [p, i]).sort((a, b) => b[0] - a[0]);
   const [p1, i1] = order[0], [p2, i2] = order[1], margin = p1 - p2;
   const th = config.thresholds;
-  const tier = p1 >= th.high && margin >= th.margin ? 'high' : p1 >= th.medium ? 'medium' : 'low';
+  const isOther = config.labels?.[i1] === 'other';   // 6th class: several/unknown problems -> never a diagnosis
+  const tier = isOther ? 'low' : p1 >= th.high && margin >= th.margin ? 'high' : p1 >= th.medium ? 'medium' : 'low';
   return { probs, top1: i1, top2: i2, p1, p2, margin, tier, ms: Math.round(performance.now() - t0) };
 }

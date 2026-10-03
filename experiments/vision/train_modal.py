@@ -30,7 +30,7 @@ H, W = 224, 448
 
 @APP.function(image=image, gpu="T4", cpu=4, memory=16384, timeout=3600, volumes={"/data": vol})
 def run_experiment(arch: str, seed: int, epochs: int = 30, export: bool = False, smoke: bool = False,
-                   robust: bool = False, quantize: bool = True) -> dict:
+                   robust: bool = False, quantize: bool = True, data_version: str = "v1") -> dict:
     import sys, csv, copy, random, time, io
     sys.path.insert(0, "/root/robustness")
     import numpy as np, torch, timm, torchvision
@@ -42,14 +42,27 @@ def run_experiment(arch: str, seed: int, epochs: int = 30, export: bool = False,
 
     t_start = time.time()
     random.seed(seed); np.random.seed(seed); torch.manual_seed(seed); torch.cuda.manual_seed_all(seed)
+    v2 = data_version == "v2"
+    NC = 6 if v2 else 5
     P = "/data/prepared"
-    rows = list(csv.DictReader(open(f"{P}/splits_seed{seed}.csv")))
-    by = {s: [(r["id"], int(r["label"])) for r in rows if r["split"] == s] for s in ("train", "val", "test")}
-    multi = [r["id"] for r in rows if r["split"] == "holdout_multi"]
+    if v2 and not os.path.exists("/data/prepared_v2/splits_v2.csv") and os.path.exists("/data/prepared_v2.tar"):
+        import tarfile; tarfile.open("/data/prepared_v2.tar").extractall("/data")   # one-file upload, unpacked on the volume
+    if v2:   # field adaptation: BRACOL + Uganda + RoCoLe, grouped splits, 6th class 'other'; keys are "source:id"
+        rows = list(csv.DictReader(open("/data/prepared_v2/splits_v2.csv")))
+        by = {s: [(f"{r['source']}:{r['id']}", int(r["label"])) for r in rows if r["split"] == s] for s in ("train", "val", "test")}
+        multi = []
+    else:
+        rows = list(csv.DictReader(open(f"{P}/splits_seed{seed}.csv")))
+        by = {s: [(r["id"], int(r["label"])) for r in rows if r["split"] == s] for s in ("train", "val", "test")}
+        multi = [r["id"] for r in rows if r["split"] == "holdout_multi"]
+    def path_of(k):
+        if not v2: return f"{P}/images/{k}.jpg"
+        src, i = k.split(":", 1)
+        return f"{P}/images/{i}.jpg" if src == "bracol" else f"/data/prepared_v2/images/{i}"
     if smoke:
         by = {k: v[::max(1, len(v) // (96 if k == "train" else 40))][: (96 if k == "train" else 40)] for k, v in by.items()}
         multi = multi[:20]
-    imgs = {i: np.asarray(Image.open(f"{P}/images/{i}.jpg").convert("RGB"))
+    imgs = {i: np.asarray(Image.open(path_of(i)).convert("RGB"))
             for i in [i for v in by.values() for i, _ in v] + multi}
 
     norm = T.Normalize(MEAN, STD)
@@ -59,7 +72,7 @@ def run_experiment(arch: str, seed: int, epochs: int = 30, export: bool = False,
 
     masks = {}
     if robust:   # leaf masks are computed once, so the random background composite stays cheap per sample
-        masks = {i: perturb.leaf_mask(Image.fromarray(imgs[i])) for i, _ in by["train"]}
+        masks = {i: perturb.leaf_mask(Image.fromarray(imgs[i])) for i, _ in by["train"] if (not v2) or i.startswith("bracol:")}
 
     class DS(torch.utils.data.Dataset):
         def __init__(self, items, tf, aug=False): self.items, self.tf, self.aug = items, tf, aug
@@ -74,10 +87,10 @@ def run_experiment(arch: str, seed: int, epochs: int = 30, export: bool = False,
     dev = "cuda"
     tr_dl = torch.utils.data.DataLoader(DS(by["train"], train_tf, aug=True), batch_size=32, shuffle=True, num_workers=4, drop_last=True)
 
-    model = timm.create_model(arch, pretrained=True, num_classes=5, drop_rate=0.2).to(dev)
+    model = timm.create_model(arch, pretrained=True, num_classes=NC, drop_rate=0.2).to(dev)
     params = sum(p.numel() for p in model.parameters())
-    counts = np.bincount([y for _, y in by["train"]], minlength=5).astype(np.float32)
-    cw = torch.tensor((counts.sum() / (5 * np.maximum(counts, 1))) ** 0.5, device=dev)
+    counts = np.bincount([y for _, y in by["train"]], minlength=NC).astype(np.float32)
+    cw = torch.tensor((counts.sum() / (NC * np.maximum(counts, 1))) ** 0.5, device=dev)
     crit = nn.CrossEntropyLoss(weight=cw)
     opt = torch.optim.AdamW(model.parameters(), lr=5e-4, weight_decay=1e-2)
     steps = epochs * len(tr_dl)
@@ -119,13 +132,20 @@ def run_experiment(arch: str, seed: int, epochs: int = 30, export: bool = False,
     ids_test = by["test"]; ytest = np.array([y for _, y in ids_test])
     arrays = {"val_logits": eval_pil(by["val"]), "val_y": yv, "test_logits": eval_pil(ids_test), "test_y": ytest,
               "test_ids": np.array([i for i, _ in ids_test]), "val_ids": np.array([i for i, _ in by["val"]]),
-              "multi_logits": eval_pil([(i, -1) for i in multi]), "multi_ids": np.array(multi)}
-    for name in perturb.NAMES + perturb.EXTRA_NAMES:
-        arrays[f"pert_{name}"] = eval_pil(ids_test, name)
-    if robust:   # validation-perturbed logits: lets the recipe decision be made on validation, not test
+              "multi_logits": eval_pil([(i, -1) for i in multi]) if multi else np.zeros((0, NC), np.float32), "multi_ids": np.array(multi)}
+    if v2:   # synthetic perturbations only make sense for the plain-background BRACOL images
+        b_idx = [k for k, (i, _) in enumerate(ids_test) if i.startswith("bracol:")]
+        arrays["test_src"] = np.array([i.split(":", 1)[0] for i, _ in ids_test]); arrays["pert_idx"] = np.array(b_idx)
+        arrays["val_src"] = np.array([i.split(":", 1)[0] for i, _ in by["val"]])
+        for name in perturb.NAMES + perturb.EXTRA_NAMES:
+            arrays[f"pert_{name}"] = eval_pil([ids_test[k] for k in b_idx], name)
+    else:
+        for name in perturb.NAMES + perturb.EXTRA_NAMES:
+            arrays[f"pert_{name}"] = eval_pil(ids_test, name)
+    if robust and not v2:   # validation-perturbed logits: lets the recipe decision be made on validation, not test
         for name in perturb.NAMES + perturb.EXTRA_NAMES:
             arrays[f"valpert_{name}"] = eval_pil(by["val"], name)
-    tag = f"{arch}_s{seed}" + ("_rob" if robust else "")
+    tag = f"{arch}_s{seed}" + ("_rob" if robust else "") + ("_v2" if v2 else "")
     os.makedirs("/data/runs", exist_ok=True)
     np.savez_compressed(f"/data/runs/{tag}.npz", **arrays)
     summary = {"arch": arch, "seed": seed, "params": params, "best_epoch": best_ep, "epochs_run": ep + 1,
@@ -195,11 +215,16 @@ def run_experiment(arch: str, seed: int, epochs: int = 30, export: bool = False,
 
 
 @APP.local_entrypoint()
-def main(smoke: bool = False, phase2: bool = False):
+def main(smoke: bool = False, phase2: bool = False, field: bool = False):
     out_dir = os.path.join(HERE, "..", "..", "results")
     if smoke:
         r = run_experiment.remote("mobilenetv3_small_100", PRIMARY, epochs=1, export=True, smoke=True, robust=phase2, quantize=not phase2)
         print(json.dumps(r, indent=2)); return
+    if field:   # field adaptation: two architectures, primary seed, robust augmentation, FP32 ONNX export, no quantisation
+        res = []
+        for r in run_experiment.starmap([(a, PRIMARY, 30, True, False, True, False, "v2") for a in ("mobilenetv3_large_100", "mobilenetv3_small_100")]):
+            print(json.dumps({k: r[k] for k in ("arch", "best_epoch", "test_acc", "test_macro_f1", "train_time_s")})); res.append(r)
+        json.dump(res, open(os.path.join(out_dir, "vision_runs_summary_v2.json"), "w"), indent=2); return
     if phase2:
         jobs = [(a, s, 30, s == PRIMARY, False, True, False) for s in SEEDS for a in ARCHS]
     else:

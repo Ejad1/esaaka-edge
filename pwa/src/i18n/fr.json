@@ -55,5 +55,6 @@
  "cls_miner": "mineuse des feuilles",
  "cls_rust": "rouille orangée",
  "cls_phoma": "taches de Phoma",
- "cls_cercospora": "tache brune (Cercospora)"
+ "cls_cercospora": "tache brune (Cercospora)",
+ "cls_other": "autre problème ou plusieurs problèmes"
 }

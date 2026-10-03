@@ -12,7 +12,7 @@ NAMES = {"mobilenetv3_small_100": "MobileNetV3-Small", "mobilenetv3_large_100": 
          "efficientnet_b0": "EfficientNet-B0", "efficientnet_lite0": "EfficientNet-Lite0"}
 
 ap = argparse.ArgumentParser(); ap.add_argument("arch"); ap.add_argument("--runs-suffix", default="_s42")
-ap.add_argument("--bench", default="model_benchmark.csv"); ap.add_argument("--guard", default=None)
+ap.add_argument("--bench", default="model_benchmark.csv"); ap.add_argument("--guard", default=None); ap.add_argument("--six", action="store_true")
 a = ap.parse_args()
 
 bm = pd.read_csv(os.path.join(RES, a.bench))
@@ -24,7 +24,7 @@ guard = json.load(open(a.guard)) if a.guard else None
 cfg = {
     "display_name": NAMES[a.arch], "arch": a.arch, "model_file": "model.onnx", "model_mb": round(os.path.getsize(dst) / 1e6, 1),
     "model_sha256": sha, "model_version": f"{a.arch}{a.runs_suffix}",
-    "labels": ["healthy", "miner", "rust", "phoma", "cercospora"],
+    "labels": ["healthy", "miner", "rust", "phoma", "cercospora"] + (["other"] if a.six else []),
     "input": {"width": 448, "height": 224, "mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225]},
     "temperature": float(row["T"]),
     "thresholds": {"high": float(row["tau_hi"]), "medium": float(row["tau_lo"]), "margin": 0.20,

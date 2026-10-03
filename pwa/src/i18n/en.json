@@ -55,5 +55,6 @@
  "cls_miner": "leaf miner",
  "cls_rust": "coffee leaf rust",
  "cls_phoma": "Phoma leaf spot",
- "cls_cercospora": "brown eye spot (Cercospora)"
+ "cls_cercospora": "brown eye spot (Cercospora)",
+ "cls_other": "another problem, or several problems"
 }
