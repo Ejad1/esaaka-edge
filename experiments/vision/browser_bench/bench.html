@@ -1,0 +1,68 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Esaaka Edge — browser benchmark</title>
+<script src="/dist/ort.min.js"></script>
+<script>
+ort.env.wasm.wasmPaths = '/dist/';
+ort.env.wasm.numThreads = 1;
+const MEAN = [0.485, 0.456, 0.406], STD = [0.229, 0.224, 0.225], W = 448, H = 224;
+
+const stats = (a) => { const s = [...a].sort((x, y) => x - y); return { median: s[Math.floor(s.length / 2)], p95: s[Math.min(s.length - 1, Math.floor(s.length * 0.95))], min: s[0], mean: a.reduce((x, y) => x + y, 0) / a.length }; };
+
+window.loadSession = async (name) => {
+  const bytes = await (await fetch(`/models/${name}.onnx`)).arrayBuffer();
+  const t0 = performance.now();
+  window.sess = await ort.InferenceSession.create(bytes, { executionProviders: ['wasm'], graphOptimizationLevel: 'all' });
+  return { loadMs: performance.now() - t0, bytes: bytes.byteLength };
+};
+
+window.inputs = async () => {
+  const meta = await (await fetch('/data/meta.json')).json();
+  const buf = await (await fetch('/data/inputs.bin')).arrayBuffer();
+  window.X = new Float32Array(buf); window.meta = meta;
+  return meta.shape;
+};
+
+const tensorAt = (i) => {
+  const n = 3 * H * W; return new ort.Tensor('float32', window.X.slice(i * n, (i + 1) * n), [1, 3, H, W]);
+};
+
+window.timeRuns = async (warm = 3, runs = 25) => {
+  const t = tensorAt(0);
+  for (let i = 0; i < warm; i++) await window.sess.run({ input: t });
+  const ms = [];
+  for (let i = 0; i < runs; i++) { const t0 = performance.now(); await window.sess.run({ input: t }); ms.push(performance.now() - t0); }
+  return stats(ms);
+};
+
+window.parity = async (key) => {
+  const exp = window.meta.models[key].expected_logits; let maxDiff = 0, agree = 0;
+  for (let i = 0; i < exp.length; i++) {
+    const out = (await window.sess.run({ input: tensorAt(i) })).logits.data;
+    let a = 0, e = 0; for (let k = 0; k < out.length; k++) { maxDiff = Math.max(maxDiff, Math.abs(out[k] - exp[i][k])); if (out[k] > out[a]) a = k; if (exp[i][k] > exp[i][e]) e = k; }
+    if (a === e) agree++;
+  }
+  return { maxAbsDiff: maxDiff, argmaxAgree: agree, n: exp.length };
+};
+
+// the PWA's real pre-processing path: image -> canvas 448x224 -> normalised CHW float32
+window.canvasTensor = async (url) => {
+  const img = await createImageBitmap(await (await fetch(url)).blob());
+  const c = new OffscreenCanvas(W, H), g = c.getContext('2d', { willReadFrequently: true });
+  g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high'; g.drawImage(img, 0, 0, W, H);
+  const d = g.getImageData(0, 0, W, H).data, out = new Float32Array(3 * H * W);
+  for (let p = 0; p < H * W; p++) for (let ch = 0; ch < 3; ch++) out[ch * H * W + p] = (d[p * 4 + ch] / 255 - MEAN[ch]) / STD[ch];
+  return new ort.Tensor('float32', out, [1, 3, H, W]);
+};
+
+window.canvasParity = async () => {
+  let maxDiff = 0, agree = 0; const exp = window.meta.models[window.currentKey].expected_logits;
+  for (let i = 0; i < window.meta.ids.length; i++) {
+    const out = (await window.sess.run({ input: await window.canvasTensor(`/data/img/${window.meta.ids[i]}.jpg`) })).logits.data;
+    let a = 0, e = 0; for (let k = 0; k < out.length; k++) { maxDiff = Math.max(maxDiff, Math.abs(out[k] - exp[i][k])); if (out[k] > out[a]) a = k; if (exp[i][k] > exp[i][e]) e = k; }
+    if (a === e) agree++;
+  }
+  return { maxAbsDiff: maxDiff, argmaxAgree: agree, n: window.meta.ids.length };
+};
+</script>
+<body>benchmark page</body>

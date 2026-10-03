@@ -1,0 +1,48 @@
+{
+  "base": "http://localhost:4173/",
+  "steps": {
+    "precached": {
+      "workbox-precache-v2-http://localhost:4173/": 12
+    },
+    "offline_loaded": {
+      "onLine": false,
+      "badge": "Hors ligne"
+    },
+    "ui": [
+      {
+        "truth": "rust",
+        "id": "113",
+        "tier": "tier-medium",
+        "text": "Possible, mais je ne suis pas sûrrouille orangéeConfiance : 48 %Ce n'est pas un diagnostic. Faites confirmer par un agent de vulgarisation avant d'agir.rouille orangéeTaches jaunes sur le dessus de la feuille et poudre orange en dessous. La maladie peut faire "
+      },
+      {
+        "truth": "healthy",
+        "id": "10",
+        "tier": "tier-high",
+        "text": "Problème probablefeuille saineConfiance : 100 %feuille saineJe ne vois pas, sur cette feuille, les signes des 4 problèmes que je connais.Que faire — Conseil général à confirmer :Regardez aussi d'autres feuilles, dessus et dessous.Reprenez une photo si vous ave"
+      }
+    ],
+    "history_count": 2,
+    "indexeddb": [
+      "esaaka-edge"
+    ],
+    "batch_offline": {
+      "n": 202,
+      "scored": 202,
+      "guard_rejected": 0,
+      "accuracy_in_browser": 0.9356435643564357,
+      "macro_f1_in_browser": 0.9185799863190522,
+      "top1_agreement_with_python": 0.9900990099009901,
+      "tiers": {
+        "high": 190,
+        "medium": 11,
+        "low": 1,
+        "guard": 0
+      },
+      "inference_ms_median": 46,
+      "inference_ms_p95": 59
+    }
+  },
+  "requests_failed_while_testing": [],
+  "console_errors": []
+}

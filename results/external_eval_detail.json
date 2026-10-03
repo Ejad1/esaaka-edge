@@ -1,0 +1,386 @@
+{
+  "uganda_pad_mobilenetv3_small_100": {
+    "confusion_true_by_pred": [
+      [
+        171,
+        15,
+        153,
+        257,
+        4
+      ],
+      [
+        6,
+        1,
+        499,
+        93,
+        1
+      ],
+      [
+        1,
+        17,
+        522,
+        58,
+        2
+      ]
+    ]
+  },
+  "rocole_pad_mobilenetv3_small_100": {
+    "mite_pred_counts": {
+      "healthy": 0,
+      "miner": 0,
+      "rust": 20,
+      "phoma": 20,
+      "cercospora": 0
+    },
+    "healthy_pred_counts": {
+      "healthy": 1,
+      "miner": 0,
+      "rust": 32,
+      "phoma": 64,
+      "cercospora": 2
+    },
+    "rust_pred_counts": {
+      "healthy": 1,
+      "miner": 0,
+      "rust": 76,
+      "phoma": 22,
+      "cercospora": 1
+    }
+  },
+  "uganda_pad_mobilenetv3_large_100": {
+    "confusion_true_by_pred": [
+      [
+        195,
+        44,
+        217,
+        127,
+        17
+      ],
+      [
+        8,
+        45,
+        488,
+        57,
+        2
+      ],
+      [
+        22,
+        93,
+        428,
+        56,
+        1
+      ]
+    ]
+  },
+  "rocole_pad_mobilenetv3_large_100": {
+    "mite_pred_counts": {
+      "healthy": 1,
+      "miner": 1,
+      "rust": 13,
+      "phoma": 13,
+      "cercospora": 12
+    },
+    "healthy_pred_counts": {
+      "healthy": 13,
+      "miner": 0,
+      "rust": 15,
+      "phoma": 39,
+      "cercospora": 32
+    },
+    "rust_pred_counts": {
+      "healthy": 4,
+      "miner": 0,
+      "rust": 40,
+      "phoma": 22,
+      "cercospora": 34
+    }
+  },
+  "uganda_pad_efficientnet_b0": {
+    "confusion_true_by_pred": [
+      [
+        193,
+        8,
+        185,
+        138,
+        76
+      ],
+      [
+        37,
+        10,
+        428,
+        107,
+        18
+      ],
+      [
+        45,
+        45,
+        399,
+        81,
+        30
+      ]
+    ]
+  },
+  "rocole_pad_efficientnet_b0": {
+    "mite_pred_counts": {
+      "healthy": 1,
+      "miner": 1,
+      "rust": 22,
+      "phoma": 8,
+      "cercospora": 8
+    },
+    "healthy_pred_counts": {
+      "healthy": 8,
+      "miner": 2,
+      "rust": 39,
+      "phoma": 17,
+      "cercospora": 33
+    },
+    "rust_pred_counts": {
+      "healthy": 5,
+      "miner": 1,
+      "rust": 64,
+      "phoma": 10,
+      "cercospora": 20
+    }
+  },
+  "uganda_pad_efficientnet_lite0": {
+    "confusion_true_by_pred": [
+      [
+        103,
+        282,
+        20,
+        40,
+        155
+      ],
+      [
+        11,
+        120,
+        304,
+        105,
+        60
+      ],
+      [
+        6,
+        264,
+        174,
+        22,
+        134
+      ]
+    ]
+  },
+  "rocole_pad_efficientnet_lite0": {
+    "mite_pred_counts": {
+      "healthy": 3,
+      "miner": 0,
+      "rust": 3,
+      "phoma": 33,
+      "cercospora": 1
+    },
+    "healthy_pred_counts": {
+      "healthy": 6,
+      "miner": 0,
+      "rust": 2,
+      "phoma": 90,
+      "cercospora": 1
+    },
+    "rust_pred_counts": {
+      "healthy": 6,
+      "miner": 2,
+      "rust": 9,
+      "phoma": 79,
+      "cercospora": 4
+    }
+  },
+  "uganda_stretch_mobilenetv3_small_100": {
+    "confusion_true_by_pred": [
+      [
+        206,
+        38,
+        170,
+        173,
+        13
+      ],
+      [
+        5,
+        2,
+        581,
+        7,
+        5
+      ],
+      [
+        2,
+        13,
+        578,
+        3,
+        4
+      ]
+    ]
+  },
+  "rocole_stretch_mobilenetv3_small_100": {
+    "mite_pred_counts": {
+      "healthy": 0,
+      "miner": 0,
+      "rust": 25,
+      "phoma": 15,
+      "cercospora": 0
+    },
+    "healthy_pred_counts": {
+      "healthy": 4,
+      "miner": 0,
+      "rust": 44,
+      "phoma": 46,
+      "cercospora": 5
+    },
+    "rust_pred_counts": {
+      "healthy": 1,
+      "miner": 1,
+      "rust": 81,
+      "phoma": 14,
+      "cercospora": 3
+    }
+  },
+  "uganda_stretch_mobilenetv3_large_100": {
+    "confusion_true_by_pred": [
+      [
+        90,
+        88,
+        359,
+        63,
+        0
+      ],
+      [
+        3,
+        33,
+        553,
+        11,
+        0
+      ],
+      [
+        37,
+        101,
+        458,
+        4,
+        0
+      ]
+    ]
+  },
+  "rocole_stretch_mobilenetv3_large_100": {
+    "mite_pred_counts": {
+      "healthy": 1,
+      "miner": 1,
+      "rust": 14,
+      "phoma": 12,
+      "cercospora": 12
+    },
+    "healthy_pred_counts": {
+      "healthy": 23,
+      "miner": 0,
+      "rust": 12,
+      "phoma": 28,
+      "cercospora": 36
+    },
+    "rust_pred_counts": {
+      "healthy": 9,
+      "miner": 0,
+      "rust": 38,
+      "phoma": 18,
+      "cercospora": 35
+    }
+  },
+  "uganda_stretch_efficientnet_b0": {
+    "confusion_true_by_pred": [
+      [
+        70,
+        14,
+        209,
+        294,
+        13
+      ],
+      [
+        31,
+        15,
+        458,
+        95,
+        1
+      ],
+      [
+        7,
+        4,
+        484,
+        90,
+        15
+      ]
+    ]
+  },
+  "rocole_stretch_efficientnet_b0": {
+    "mite_pred_counts": {
+      "healthy": 0,
+      "miner": 4,
+      "rust": 14,
+      "phoma": 9,
+      "cercospora": 13
+    },
+    "healthy_pred_counts": {
+      "healthy": 8,
+      "miner": 5,
+      "rust": 28,
+      "phoma": 19,
+      "cercospora": 39
+    },
+    "rust_pred_counts": {
+      "healthy": 4,
+      "miner": 2,
+      "rust": 46,
+      "phoma": 13,
+      "cercospora": 35
+    }
+  },
+  "uganda_stretch_efficientnet_lite0": {
+    "confusion_true_by_pred": [
+      [
+        198,
+        66,
+        141,
+        191,
+        4
+      ],
+      [
+        37,
+        38,
+        333,
+        171,
+        21
+      ],
+      [
+        37,
+        140,
+        297,
+        102,
+        24
+      ]
+    ]
+  },
+  "rocole_stretch_efficientnet_lite0": {
+    "mite_pred_counts": {
+      "healthy": 1,
+      "miner": 0,
+      "rust": 3,
+      "phoma": 36,
+      "cercospora": 0
+    },
+    "healthy_pred_counts": {
+      "healthy": 9,
+      "miner": 0,
+      "rust": 2,
+      "phoma": 88,
+      "cercospora": 0
+    },
+    "rust_pred_counts": {
+      "healthy": 10,
+      "miner": 2,
+      "rust": 12,
+      "phoma": 72,
+      "cercospora": 4
+    }
+  }
+}

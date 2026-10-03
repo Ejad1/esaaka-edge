@@ -1,0 +1,16 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+pwa/public/ort/
+pwa/tests/.profile-*
+experiments/vision/browser_bench/models/
+experiments/vision/browser_bench/data/
+experiments/vision/browser_bench/.edge-profile/
+results/runs/
+results/_*.log
+results/_analysis_store.pkl
+results/e2e_batch_rows.json
+.env
+results/speech/tts_samples/
+pwa/node_modules/

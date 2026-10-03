@@ -1,0 +1,283 @@
+{
+  "env": {
+    "browser": "Microsoft Edge (headless, Playwright)",
+    "ort": "onnxruntime-web 1.30.0",
+    "ep": "wasm",
+    "threads": 1,
+    "note": "Dev laptop CPU; x4/x6 = EMULATED CPU throttling, not a real phone"
+  },
+  "results": [
+    {
+      "model": "mobilenetv3_small_100_fp32",
+      "bytes": 6099221,
+      "loadMs": 1359,
+      "parity": {
+        "maxAbsDiff": 0.000213623046875,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "canvasParity": {
+        "maxAbsDiff": 2.019123077392578,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "latency_x1": {
+        "median": 25,
+        "p95": 29.5,
+        "min": 22.099999997764826,
+        "mean": 25.276000000089407
+      },
+      "latency_x4": {
+        "median": 120.69999999925494,
+        "p95": 158.09999999776483,
+        "min": 110.69999999925494,
+        "mean": 125.35833333308499
+      },
+      "latency_x6": {
+        "median": 186.90000000223517,
+        "p95": 204.39999999850988,
+        "min": 180.09999999776483,
+        "mean": 189.39166666691503
+      },
+      "memDeltaMB": 124
+    },
+    {
+      "model": "mobilenetv3_small_100_int8",
+      "bytes": 1840658,
+      "loadMs": 1577,
+      "parity": {
+        "maxAbsDiff": 11.442864656448364,
+        "argmaxAgree": 3,
+        "n": 8
+      },
+      "canvasParity": {
+        "maxAbsDiff": 14.303580522537231,
+        "argmaxAgree": 3,
+        "n": 8
+      },
+      "latency_x1": {
+        "median": 40.5,
+        "p95": 52.69999999925494,
+        "min": 35.80000000074506,
+        "mean": 42.08000000014901
+      },
+      "latency_x4": {
+        "median": 179.39999999850988,
+        "p95": 221.19999999925494,
+        "min": 172.90000000223517,
+        "mean": 182.76666666660458
+      },
+      "latency_x6": {
+        "median": 289.79999999701977,
+        "p95": 309.8999999985099,
+        "min": 281.19999999925494,
+        "mean": 291.40833333320916
+      },
+      "memDeltaMB": 108
+    },
+    {
+      "model": "mobilenetv3_large_100_fp32",
+      "bytes": 16820903,
+      "loadMs": 1134,
+      "parity": {
+        "maxAbsDiff": 0.0000400543212890625,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "canvasParity": {
+        "maxAbsDiff": 3.0878543853759766,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "latency_x1": {
+        "median": 70.5,
+        "p95": 82.30000000074506,
+        "min": 61.80000000074506,
+        "mean": 71.6560000000894
+      },
+      "latency_x4": {
+        "median": 299.4000000022352,
+        "p95": 307.3999999985099,
+        "min": 287,
+        "mean": 296.49166666654247
+      },
+      "latency_x6": {
+        "median": 528.5,
+        "p95": 656.5,
+        "min": 466.5,
+        "mean": 521.9333333335817
+      },
+      "memDeltaMB": 122
+    },
+    {
+      "model": "mobilenetv3_large_100_int8",
+      "bytes": 4678405,
+      "loadMs": 1536,
+      "parity": {
+        "maxAbsDiff": 8.933443069458008,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "canvasParity": {
+        "maxAbsDiff": 9.899221420288086,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "latency_x1": {
+        "median": 115.60000000149012,
+        "p95": 127.80000000074506,
+        "min": 104.59999999776483,
+        "mean": 116.6359999999404
+      },
+      "latency_x4": {
+        "median": 482.8999999985099,
+        "p95": 508.19999999925494,
+        "min": 474,
+        "mean": 485.1083333333954
+      },
+      "latency_x6": {
+        "median": 845.2000000029802,
+        "p95": 1051.699999999255,
+        "min": 761,
+        "mean": 854.8166666670392
+      },
+      "memDeltaMB": 136
+    },
+    {
+      "model": "efficientnet_b0_fp32",
+      "bytes": 16030480,
+      "loadMs": 1203,
+      "parity": {
+        "maxAbsDiff": 0.00075531005859375,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "canvasParity": {
+        "maxAbsDiff": 1.8899164199829102,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "latency_x1": {
+        "median": 172.10000000149012,
+        "p95": 201.19999999925494,
+        "min": 155.29999999701977,
+        "mean": 172.3920000000298
+      },
+      "latency_x4": {
+        "median": 783.7999999970198,
+        "p95": 1207,
+        "min": 685.3999999985099,
+        "mean": 812.3416666664804
+      },
+      "latency_x6": {
+        "median": 1240.3999999985099,
+        "p95": 1573.8999999985099,
+        "min": 1188,
+        "mean": 1304.9083333332092
+      },
+      "memDeltaMB": 79
+    },
+    {
+      "model": "efficientnet_b0_int8",
+      "bytes": 4813796,
+      "loadMs": 1778,
+      "parity": {
+        "maxAbsDiff": 2.1115591526031494,
+        "argmaxAgree": 7,
+        "n": 8
+      },
+      "canvasParity": {
+        "maxAbsDiff": 2.8154120445251465,
+        "argmaxAgree": 7,
+        "n": 8
+      },
+      "latency_x1": {
+        "median": 205,
+        "p95": 233.5,
+        "min": 191.20000000298023,
+        "mean": 209.9
+      },
+      "latency_x4": {
+        "median": 883.5,
+        "p95": 951.1000000014901,
+        "min": 866,
+        "mean": 892.6666666666666
+      },
+      "latency_x6": {
+        "median": 1400.1000000014901,
+        "p95": 1852.7999999970198,
+        "min": 1343.6000000014901,
+        "mean": 1479.5416666666667
+      },
+      "memDeltaMB": 99
+    },
+    {
+      "model": "efficientnet_lite0_fp32",
+      "bytes": 13461683,
+      "loadMs": 1153,
+      "parity": {
+        "maxAbsDiff": 0.0000209808349609375,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "canvasParity": {
+        "maxAbsDiff": 2.7282466888427734,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "latency_x1": {
+        "median": 123.80000000074506,
+        "p95": 140,
+        "min": 111.40000000223517,
+        "mean": 124.0479999999702
+      },
+      "latency_x4": {
+        "median": 492.30000000074506,
+        "p95": 582.3000000007451,
+        "min": 463.5,
+        "mean": 504.59166666679084
+      },
+      "latency_x6": {
+        "median": 783.3000000007451,
+        "p95": 825.3000000007451,
+        "min": 752,
+        "mean": 781.3083333332712
+      },
+      "memDeltaMB": 117
+    },
+    {
+      "model": "efficientnet_lite0_int8",
+      "bytes": 3809675,
+      "loadMs": 1275,
+      "parity": {
+        "maxAbsDiff": 6.806480884552002,
+        "argmaxAgree": 7,
+        "n": 8
+      },
+      "canvasParity": {
+        "maxAbsDiff": 6.806480884552002,
+        "argmaxAgree": 8,
+        "n": 8
+      },
+      "latency_x1": {
+        "median": 200,
+        "p95": 212.20000000298023,
+        "min": 186.40000000223517,
+        "mean": 199.7320000000298
+      },
+      "latency_x4": {
+        "median": 825.1000000014901,
+        "p95": 864,
+        "min": 790.3999999985099,
+        "mean": 820.4916666668529
+      },
+      "latency_x6": {
+        "median": 1359.9000000022352,
+        "p95": 1714.300000000745,
+        "min": 1290.199999999255,
+        "mean": 1372.3333333333333
+      },
+      "memDeltaMB": 86
+    }
+  ]
+}
