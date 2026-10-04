@@ -100,7 +100,8 @@ function resultScreen() {
     }
     return main;
   }
-  const r = L.res, name = clsName(r.top1), pct = Math.min(99, Math.round(r.p1 * 100)), adv = state.advice[lang === 'en' ? 'en' : 'fr'];
+  const r = L.res, name = clsName(r.top1), pct = Math.min(99, Math.round(r.p1 * 100)), adv = state.advice[lang === 'en' ? 'en' : 'fr'], advFr = state.advice.fr, advEe = lang === 'ee' ? state.advice.ee : null;
+  const tx = (ee, fr) => (ee ? [el('span', {}, ee), el('br'), el('small', { className: 'muted' }, fr)] : fr);
   if (r.tier === 'low') {
     main.append(el('div', { className: 'tier low', id: 'tier-low' }, el('h2', {}, t('result_low')), el('div', {}, t('result_low_body'))));
   } else {
@@ -109,9 +110,9 @@ function resultScreen() {
       el('h2', {}, name),
       el('div', {}, t('confidence') + ' : ' + pct + ' %'), el('div', { className: 'bar' }, el('i', { style: `width:${pct}%` })),
       r.tier === 'medium' ? el('div', { style: 'margin-top:8px' }, t('result_medium_warn')) : null));
-    const a = adv[CLASSES[r.top1]];
-    main.append(el('div', { className: 'panel' }, el('h2', {}, name), el('div', {}, a.what),
-      el('h2', { style: 'margin-top:10px' }, t('what_to_do') + ' — ' + t('ask_note')), el('ul', {}, a.do.map((x) => el('li', {}, x))), el('p', { style: 'margin:8px 0 0' }, adv.escalate)));
+    const c = CLASSES[r.top1], a = adv[c], ae = advEe && advEe[c];
+    main.append(el('div', { className: 'panel' }, el('h2', {}, name), el('div', {}, ...[].concat(ae ? tx(ae.what, advFr[c].what) : a.what)),
+      el('h2', { style: 'margin-top:10px' }, t('what_to_do') + ' — ' + t('ask_note')), el('ul', {}, advFr[c].do.map((x, i) => el('li', {}, ...[].concat(ae ? tx(ae.do[i], x) : (lang === 'en' ? a.do[i] : x))))), el('p', { style: 'margin:8px 0 0' }, ...[].concat(advEe ? tx(advEe.escalate, advFr.escalate) : adv.escalate))));
     if (r.p2 > 0.15) main.append(el('div', { className: 'muted' }, t('other_possibility') + ' : ' + clsName(r.top2) + ' (' + Math.round(r.p2 * 100) + ' %)'));
   }
   main.append(el('button', { className: 'btn warn', id: 'share', textContent: '✉  ' + t('ask_officer'), onclick: () => shareObs(L.id) }));

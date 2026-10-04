@@ -1,19 +1,123 @@
 {
  "_note": "FIXED LIST OF ANSWERS. Drafted from general coffee-agronomy knowledge; NOT yet validated by an agronomist. No pesticide names, no doses. Every entry sends the user to an extension officer.",
  "fr": {
-  "healthy": { "what": "Je ne vois pas, sur cette feuille, les signes des 4 problèmes que je connais.", "do": ["Regardez aussi d'autres feuilles, dessus et dessous.", "Reprenez une photo si vous avez un doute."] },
-  "miner": { "what": "Petites galeries ou plaques sèches et claires dans la feuille, creusées par une petite chenille.", "do": ["Comptez combien de feuilles sont touchées sur quelques arbustes.", "Ne traitez pas au hasard avec un insecticide : cela peut tuer les insectes utiles qui limitent la mineuse."] },
-  "rust": { "what": "Taches jaunes sur le dessus de la feuille et poudre orange en dessous. La maladie peut faire tomber les feuilles.", "do": ["Évitez de passer dans les rangs quand les feuilles sont mouillées : cela propage la maladie.", "Aérez la parcelle (taille, ombrage raisonnable).", "Gardez les plants bien nourris et arrosés : les plants affaiblis souffrent davantage."] },
-  "phoma": { "what": "Grandes taches brunes sur les feuilles, parfois sur les jeunes pousses, plus fréquentes par temps frais, humide et venteux.", "do": ["Protégez les jeunes plants du vent froid si possible.", "Évitez de blesser les jeunes pousses.", "Notez où et quand les taches apparaissent."] },
-  "cercospora": { "what": "Taches rondes brunes, souvent avec un centre clair, liées à un stress de la plante (manque d'eau ou d'éléments nutritifs, soleil fort).", "do": ["Vérifiez l'eau et la fertilité du sol : une plante stressée est plus touchée.", "Le paillage et un ombrage adapté peuvent aider."] },
+  "healthy": {
+   "what": "Je ne vois pas, sur cette feuille, les signes des 4 problèmes que je connais.",
+   "do": [
+    "Regardez aussi d'autres feuilles, dessus et dessous.",
+    "Reprenez une photo si vous avez un doute."
+   ]
+  },
+  "miner": {
+   "what": "Petites galeries ou plaques sèches et claires dans la feuille, creusées par une petite chenille.",
+   "do": [
+    "Comptez combien de feuilles sont touchées sur quelques arbustes.",
+    "Ne traitez pas au hasard avec un insecticide : cela peut tuer les insectes utiles qui limitent la mineuse."
+   ]
+  },
+  "rust": {
+   "what": "Taches jaunes sur le dessus de la feuille et poudre orange en dessous. La maladie peut faire tomber les feuilles.",
+   "do": [
+    "Évitez de passer dans les rangs quand les feuilles sont mouillées : cela propage la maladie.",
+    "Aérez la parcelle (taille, ombrage raisonnable).",
+    "Gardez les plants bien nourris et arrosés : les plants affaiblis souffrent davantage."
+   ]
+  },
+  "phoma": {
+   "what": "Grandes taches brunes sur les feuilles, parfois sur les jeunes pousses, plus fréquentes par temps frais, humide et venteux.",
+   "do": [
+    "Protégez les jeunes plants du vent froid si possible.",
+    "Évitez de blesser les jeunes pousses.",
+    "Notez où et quand les taches apparaissent."
+   ]
+  },
+  "cercospora": {
+   "what": "Taches rondes brunes, souvent avec un centre clair, liées à un stress de la plante (manque d'eau ou d'éléments nutritifs, soleil fort).",
+   "do": [
+    "Vérifiez l'eau et la fertilité du sol : une plante stressée est plus touchée.",
+    "Le paillage et un ombrage adapté peuvent aider."
+   ]
+  },
   "escalate": "Faites confirmer par un agent de vulgarisation : il vous dira quels traitements, s'il en faut, sont adaptés et autorisés dans votre zone."
  },
  "en": {
-  "healthy": { "what": "I do not see, on this leaf, signs of the 4 problems I know.", "do": ["Look at other leaves too, top and underside.", "Retake the photo if you are unsure."] },
-  "miner": { "what": "Small tunnels or dry pale patches in the leaf, dug by a tiny caterpillar.", "do": ["Count how many leaves are affected on a few bushes.", "Do not spray an insecticide at random: it can kill the helpful insects that keep leaf miner in check."] },
-  "rust": { "what": "Yellow spots on the top of the leaf and orange powder underneath. The disease can make leaves fall.", "do": ["Avoid walking through the rows when leaves are wet: it spreads the disease.", "Let air move through the plot (pruning, reasonable shade).", "Keep plants well fed and watered: weakened plants suffer more."] },
-  "phoma": { "what": "Large brown patches on leaves, sometimes on young shoots, more common in cool, wet, windy weather.", "do": ["Shelter young plants from cold wind where possible.", "Avoid wounding young shoots.", "Note where and when the spots appear."] },
-  "cercospora": { "what": "Round brown spots, often with a pale centre, linked to plant stress (lack of water or nutrients, strong sun).", "do": ["Check water and soil fertility: a stressed plant is hit harder.", "Mulch and suitable shade can help."] },
+  "healthy": {
+   "what": "I do not see, on this leaf, signs of the 4 problems I know.",
+   "do": [
+    "Look at other leaves too, top and underside.",
+    "Retake the photo if you are unsure."
+   ]
+  },
+  "miner": {
+   "what": "Small tunnels or dry pale patches in the leaf, dug by a tiny caterpillar.",
+   "do": [
+    "Count how many leaves are affected on a few bushes.",
+    "Do not spray an insecticide at random: it can kill the helpful insects that keep leaf miner in check."
+   ]
+  },
+  "rust": {
+   "what": "Yellow spots on the top of the leaf and orange powder underneath. The disease can make leaves fall.",
+   "do": [
+    "Avoid walking through the rows when leaves are wet: it spreads the disease.",
+    "Let air move through the plot (pruning, reasonable shade).",
+    "Keep plants well fed and watered: weakened plants suffer more."
+   ]
+  },
+  "phoma": {
+   "what": "Large brown patches on leaves, sometimes on young shoots, more common in cool, wet, windy weather.",
+   "do": [
+    "Shelter young plants from cold wind where possible.",
+    "Avoid wounding young shoots.",
+    "Note where and when the spots appear."
+   ]
+  },
+  "cercospora": {
+   "what": "Round brown spots, often with a pale centre, linked to plant stress (lack of water or nutrients, strong sun).",
+   "do": [
+    "Check water and soil fertility: a stressed plant is hit harder.",
+    "Mulch and suitable shade can help."
+   ]
+  },
   "escalate": "Have an extension officer confirm: they will tell you which treatments, if any, are suitable and permitted in your area."
+ },
+ "ee": {
+  "healthy": {
+   "what": "",
+   "do": [
+    "Lé ŋku ɖe aŋgba bubuwo hã ŋu, le etame kple ete.",
+    "Gaɖe foto ake ne ɖikeke le ŋuwò."
+   ]
+  },
+  "miner": {
+   "what": "",
+   "do": [
+    "Xlẽ aŋgba agbɔsɔsɔme si ŋu wògblẽ nu le le ati ʋɛ aɖewo ŋu.",
+    ""
+   ]
+  },
+  "rust": {
+   "what": "",
+   "do": [
+    "Ƒo asa na fliawo me toto ne aŋgbawo xɔ dzo: esia kakaa dɔlélea.",
+    "Na ya naƒo anyigbaa (lolome, vɔvɔli si sɔ).",
+    "Na numiemiewo naɖu nu nyuie eye nàde tsi wo: numiemie siwo gbɔdzɔ la kpea fu wu."
+   ]
+  },
+  "phoma": {
+   "what": "Teƒe gã siwo ƒe amadede nye aŋutiɖiɖi le aŋgbawo ŋu, ɣeaɖewoɣi le aŋgba fẽwo dzi, wobɔna wu le yame ƒe fafɛ, fafa kple yaƒoƒo me.",
+   "do": [
+    "Takpɔ numiemie fẽwo ta tso ya fafɛwo si me ne anya wɔ.",
+    "",
+    "De dzesi afisi teƒeawo adze le kple ɣeyiɣi si me wodzena le."
+   ]
+  },
+  "cercospora": {
+   "what": "Teƒe siwo le goglo siwo ƒe amadede nye aŋutiɖiɖi, siwo ƒe titina nɔa keklẽm zi geɖe, si do ƒome kple numiemiewo ƒe nuteɖeamedzi (tsi alo nunyiame ƒe anyimanɔmanɔ, ŋdɔ sesẽ).",
+   "do": [
+    "Kpɔ tsi kple anyigba ƒe nyonyo ɖa: numiemie si nu te ɖe edzi lae wògblẽa nu le wu.",
+    "Mulching kple vɔvɔli si sɔ ate ŋu akpe ɖe ame ŋu."
+   ]
+  },
+  "escalate": ""
  }
 }

@@ -18,7 +18,7 @@ Hack-Nation x World Bank Youth Summit 2026 — Challenge 4, *Small AI for Develo
 |---|---|
 | On-device inference, offline PWA, local storage, tiers, FR/EN UI | **REAL** (end-to-end offline test, see `results/e2e_offline.json`) |
 | Input-quality gate | **REAL**, evaluated on synthetic perturbations (see `docs/EXPERIMENTS.md`) |
-| Ewe interface | **Text only, UNVALIDATED machine translation (Google Translate FR->EE, cross-checked EN->EE and back-translated), done at authoring time; the app calls nothing external.** 49 of 58 strings shipped; 9 with wrong or doubtful back-translation are left empty and fall back to French. Advice texts stay French/English. A native speaker must review `pwa/EWE_REVIEW.md` before any real use |
+| Ewe interface | **Text only, UNVALIDATED machine translation (Google Translate FR->EE, cross-checked EN->EE and back-translated), done at authoring time; the app calls nothing external.** 49 of 58 strings shipped; 9 with wrong or doubtful back-translation are left empty and fall back to French. Advice texts: 12 of 18 sentences machine-translated to Ewe (`pwa/EWE_ADVICE_REVIEW.md`), each shown with its French original underneath; 6 with wrong back-translation (e.g. 'doctor' for extension officer, 'orange powder' as 'olive smell') are left in French. A native speaker must review `pwa/EWE_REVIEW.md` before any real use |
 | Sharing with an extension officer | **REAL** via Web Share / WhatsApp link; no server |
 | Server-side sync, officer dashboard, more crops, voice in Ewe | **FUTURE** |
 
