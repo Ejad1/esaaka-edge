@@ -20,7 +20,7 @@ Record the demo part on a **real phone, in airplane mode**, screen-recorded. `[U
 4. Retake with a **blurry or busy-background photo**: the app refuses ("Photo to retake") and says why. *"It would rather ask for a better photo than guess."*
 5. Show a **LOW-confidence** result (use a leaf of a different disease/object): *"I cannot identify this problem. Show this leaf to an extension officer."*
 6. Open **My observations**: saved on the phone, "waiting to be sent". Tap **Ask the extension officer**: share sheet with the photo and a short message (WhatsApp). *"Store and forward: the record waits on the phone until there is a signal."*
-7. Switch language FR / EN. **Ewe**: `[UPDATE]` only if validated translations/audio are in; otherwise say honestly: "The Ewe slot is built; we do not machine-translate Ewe, so it is waiting for validated text from a native speaker."
+7. Switch language FR / EN / Ewe. Say honestly: "The Ewe text is a machine-translated draft, flagged as unvalidated in the app; some strings fall back to French and advice texts are still French/English. A native speaker must validate it before real use."
 
 ## 2:15 – 3:00 · Guardrails and evidence (slides with the plots)
 * "Three outcomes only, from a fixed list of answers: probable, possible-but-not-sure, or **no diagnosis**. No pesticide names, no doses. A person makes the final call."
